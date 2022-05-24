@@ -1,0 +1,223 @@
+@-webkit-keyframes flip-2-ver-left-2 {
+    0% {
+      -webkit-transform: translateX(0) rotateY(0);
+              transform: translateX(0) rotateY(0);
+      -webkit-transform-origin: 0% 50%;
+              transform-origin: 0% 50%;
+    }
+    100% {
+      -webkit-transform: translateX(-100%) rotateY(-180deg);
+              transform: translateX(-100%) rotateY(-180deg);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+}
+
+@keyframes flip-2-ver-left-2 {
+    0% {
+      -webkit-transform: translateX(0) rotateY(0);
+              transform: translateX(0) rotateY(0);
+      -webkit-transform-origin: 0% 50%;
+              transform-origin: 0% 50%;
+    }
+    100% {
+      -webkit-transform: translateX(-100%) rotateY(-180deg);
+              transform: translateX(-100%) rotateY(-180deg);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:49% 0%}
+    50%{background-position:52% 100%}
+    100%{background-position:49% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:49% 0%}
+    50%{background-position:52% 100%}
+    100%{background-position:49% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:49% 0%}
+    50%{background-position:52% 100%}
+    100%{background-position:49% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:49% 0%}
+    50%{background-position:52% 100%}
+    100%{background-position:49% 0%}
+}
+  
+
+body{
+    background-size: 1000% 1000%;
+    background: linear-gradient(0deg, #727272, #727272, #727272, #727272, #727272);
+}
+
+td.column{
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+    font-size: 30px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    font-family: 'Josefin Sans', 'Times New Roman', Times, serif;
+}
+
+div{
+    text-align: center;
+}
+
+div.menu{
+    height: 8%;
+    align-items: center;
+}
+
+div.intro{
+    display: flex;
+    font-size: 50px;
+    padding-top: 50px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+div.word{
+    display:flex;
+    padding: 15px;
+    align-items:center;
+    justify-content:center;
+}
+
+div.new_game{
+    display: none;
+}
+
+div.rest{
+    top: 25%;
+    right: 10%;
+    width: 90px;
+    float: right;
+    height: 120px;
+    display: none;
+    border-radius: 5px;
+    position: absolute;
+    vertical-align: middle;
+    justify-content: center;
+    border: 1px solid #000000;
+    background: rgb(12,54,25);
+    background: linear-gradient(0deg, rgba(12,54,25,1) 0%, rgba(95,246,95,1) 100%);
+    -webkit-animation: flip-2-ver-left-2 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2 alternate both;
+	        animation: flip-2-ver-left-2 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2 alternate both;
+}
+
+div.point{
+    width: 90px;
+    height: 120px;
+    display: none;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    border: 1px solid #000000;
+    background: rgb(39,64,173);
+    background: linear-gradient(0deg, rgba(39,64,173,1) 0%, rgba(33,219,221,1) 100%);
+    -webkit-animation: flip-2-ver-left-2 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2 alternate both;
+	        animation: flip-2-ver-left-2 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2 alternate both;
+}
+
+div.point_a{
+    left: 5%;
+    top: 25% !important;
+}
+
+div.point_b{
+    left: 15%;
+    top: 25% !important;
+}
+
+div.modal_input{
+    display: none;
+}
+
+div.img{
+    top: 70%;
+    right: 10%;
+    display: none;
+    float: right;
+    position: absolute;
+}
+
+div.drop{
+    display: inline;
+}
+
+p.textpoint_start{
+    top: 1%;
+    font-size: 20px;
+    text-align: center;
+    margin-block-end: 0.1em;
+    margin-block-start: 0.1em;
+}
+
+p.textpoint_end{
+    left: 14%;
+    bottom: 1%;
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    margin-block-end: 0.1em;
+    margin-block-start: 0.1em;
+}
+
+p.valuepoint{
+    top: 0%;
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    margin-block-start: 0.1em;
+}
+
+p.rest{
+    font-size: 40px;
+    text-align: center;
+    margin-block-start: 0.5em;
+}
+
+input.inputletra{
+    border-radius: 5px;
+}
+
+input.newgame{
+    border-radius: 4px;
+}
+
+input.verificarletra{
+    border-radius: 4px;
+}
+
+input.quant{
+    left: 5em;
+    width: 100px;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+
+input.quantPerson{
+    width: 200px !important;
+}
+
+button.quant{
+    left: 5em;
+    width: 100px;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+}

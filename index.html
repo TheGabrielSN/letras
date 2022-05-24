@@ -1,0 +1,154 @@
+<html>
+    <head>
+      <title> Descubra a Palavra </title>
+      <meta charset="UTF-8" />
+      <meta name="author" content="https://github.com/TheGabrielSN"/>
+      <link rel="stylesheet" type="text/css" href="css/main.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    </head>
+
+    <header class="p-3 mb-3">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <input type="button" value="Uma" class="quant" onclick="create(1)"/>
+            <input type="button" value="Duas" class="quant" onclick="create(2)"/>
+            <input type="button" value="Três" class="quant" onclick="create(3)"/>
+            <input type="button" value="Personalizado" class="quant quantPerson" onclick="person()"/>
+            <input type="button" value="Reset" class="quant" onclick="reset()"/>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <body>
+        <!-- Titulo -->
+        <div class="intro">
+            <p class="title"> Qual a palavra? </p>
+        </div>
+
+        <!-- Exebição da palavra -->
+        <div class="word"></div>
+
+        <!-- Entrada -->
+        <div class="letter">
+            <label for="letra" class="textletra"> Digite uma letra: </label>
+            <input type="text" id="letra" class="inputletra"/>
+            <input type="submit" value="Verificar" class="verificarletra" onclick="game.verificar()"/>
+        </div>
+
+        <!-- Nova palavra -->
+        <div class="new_game">
+            <input type="submit" value="Nova Palavra" class="newgame" onclick="game.start()"/>
+        </div>
+
+        <!-- Área de letras já inseridas -->
+        <div>
+            <p class="attempts"></p>
+        </div>
+
+        <!-- Chances restantes -->
+        <div class="rest">
+            <p class="rest"></p>
+        </div>
+
+        <!-- Pontuação -->
+        <div class="point point_a" id="player1">
+            <p class="textpoint_start">Player 1</p>
+            <p class="valuepoint" id="p1"></p>
+            <p class="textpoint_end">Pontos</p>
+        </div>
+        <div class="point point_b" id="player2">
+            <p class="textpoint_start">Player 2</p>
+            <p class="valuepoint" id="p2"></p>
+            <p class="textpoint_end">Pontos</p>
+        </div>
+
+        <!-- Imagens -->
+        <div class="img">
+          <img class="img" src=""/>
+        </div>
+
+        <!-- Modal para avisos -->
+        <div class="modal fade" id="ModalMensage" tabindex="-1" role="dialog" aria-labelledby="titulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="titulo"> Aviso! </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p id="textNotice"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Modal para entrada da quantidade de palavras -->
+        <div class="modal fade" id="ModalInputNumberWord" tabindex="-1" role="dialog" aria-labelledby="titulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="titulo"> Aviso! </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p id="textNoticeNum"></p>
+                    <form>
+                        <div class="form-group modal_input">
+                            <label for="recipient-name" class="col-form-label"> Digite a quantidade de palavras desejadas: </label>
+                            <input type="text" class="form-control" id="recipient-numWordPerson">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary modal_input" data-dismiss="modal" onclick="get_num_person()">Ok</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Modal para inputs -->
+        <div class="modal fade" id="ModalInputPlayer" tabindex="-1" role="dialog" aria-labelledby="titulo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="titulo"> Bem Vindo!</h5> <br/>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <h6 class="modal-title" id="sub-titulo"> Em caso de apenas 1 jogador, digite apenas o nome do player 1!</h6>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Digite o nome do player 1: </label>
+                            <input type="text" class="form-control" id="recipient-name1">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Digite o nome do player 2: </label>
+                            <input type="text" class="form-control" id="recipient-name2">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal", onclick="getPlayers()">Ok</button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/main.js"> </script>
+</html>
