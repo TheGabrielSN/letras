@@ -30,7 +30,12 @@ class Player{
  */
 class Random{
     constructor(){
-        this.dic = ['Aarão','Abelardo','Abissínia','Abner','Babel','Bagdá','Bahamas','Baical','Cabral','Campinas','Canabis','Canadá','Dafne','Dagoberto','Dalila','Dalmácia','Edgar','Edimburgo','Edite','Edmundo','Feitosa','Felipe','Fermat','Fernanda','Gabriel','Gales','Galois','Garcia','Hamburg','Hamilton','Hegel','Helvécio','Indochina','Indonésia','Inglaterra','Intel','Jaime','Jamaica','Japão','Jesus','Kazuo','Kioto','Klein','Labma','Lages','Laplace','Lapônia','MERCOSUL','Maceió','Madrid','Malba','Napoleão','Natal','Navier','Nelson','Oceano','Oklahoma','Osvaldo','Pacífico','Palestina','Palumbo','Panamá','Quadrivium','Quarup','Quixote','Quênia','Rafael','Raimundo','Ramos','Raquel','Saara','Salomão','Salvador','Samaria','Tailândia','Tapajós','Taylor','Tchecoslováquia','Ulisses','Ulysses','Unidas','Unidos','VARIG','Vacaria','Valdemar','Varsóvia','Waterloo','Zanete','Zelândia','Zâmbia','Zéfiro','abacate','abacateiro','abacateiros','abacates','babaca','babacas','babado','babados','caatinga','caatingas','caatingueira','caatingueiras','dactilógrafa','dactilógrafas','dactilógrafo','dactilógrafos','ebulição','ebúrnea','ebúrneas','ebúrneo','fabrica','fabricada','fabricadas','fabricado','gabado','gabai','gabais','gabam','habeas','habilidade','habilidades','habilidosa','ianque','ianques','iates','iatismo','jabuti','jabuticaba','jabuticabas','jabuticabeira','kantiana','kantianas','kantiano','kantianos','labareda','labaredas','labirinto','labirintos','macabra','macabras','macabro','macabros','nababo','nababos','nabla','nabos','obceca','obcecado','obcecai','obcecais','pacata','pacatas','pacato','pacatos','quadra','quadrada','quadradas','quadradinho','rabada','rabadas','rabanada','rabanadas','saara','sabará','sabatina','sabatinado','tabacaria','tabacarias','tabaco','tabacos','ucraniana','ucranianas','ucraniano','ucranianos','vacante','vacantes','vacas','vacila','walter','xadrez','xales','xaropada','xaropadas','zabumba','zagas','zagueira','zagueiras','África','Álvares','Átila','Áustria','Ângela','Ângelo','Édipo','Éfeso','Épiro','Érica','Índia','Órion','àquela','àquelas','àquele','àqueles','ábaco','ábacos','ábside','ábsides','âmago','âmbar','âmbito','âmbitos','ébano','ébrio','ébrios','écloga','êmbolo','êmbolos','êmula','êmulas','íamos','ícone','ícones','ídolo','óbito','óbitos','óbolo','óbvia','ônibus','ôntica','ônticas','ôntico','úlcera','úlceras','última','últimas'];
+        let request = new XMLHttpRequest();
+        request.open('GET', "https://raw.githubusercontent.com/TheGabrielSN/letras/main/database/br-utf8.txt", false);
+        request.send(null);
+
+        this.dic = request.response.split('\n');        
+
         this.images_correct = ['database/img/correct/01_TG.gif', 'database/img/correct/02_Hornet.gif', 'database/img/correct/03_Knight.gif',
                                 'database/img/correct/04_Knight.webp', 'database/img/correct/05_Knight.gif'];
         this.images_incorrect = ['database/img/incorrect/01-Lords.webp', 'database/img/incorrect/02-Quirrel.webp', 'database/img/incorrect/03-mushroom.gif',
@@ -54,7 +59,14 @@ class Random{
      * @returns {String} Random word
      */
     random_word(){
-        let index = this.generate_random_int(0, this.dic.length-1);
+        let index = this.generate_random_int(0, this.dic.length);
+        var word = this.dic[index];
+
+        while(word.length < 5){
+            let index = this.generate_random_int(0, this.dic.length-1);
+            let word = this.dic[index];
+        }
+
         return this.dic[index];
     }
 
@@ -133,6 +145,12 @@ class Layout{
  */
 class Game{
     constructor(num_word, name1, name2){
+        // Visual
+        this.layout = new Layout();
+
+        // RandomWord
+        this.rw = new Random();
+
         // Variaveis de objetos
         this.prest = document.querySelector('p.rest');              // Valor de tentativas restantes
         this.pos_word = document.querySelector('.word');            // Palavra(s)
@@ -159,12 +177,6 @@ class Game{
         name2 ? this.p2 = new Player(name2, 3, "p#p2", "div#player2") :  this.p2 = null;
 
         this.current = this.p1;
-
-        // Visual
-        this.layout = new Layout();
-
-        // RandomWord
-        this.rw = new Random();
     }
 
     /**
